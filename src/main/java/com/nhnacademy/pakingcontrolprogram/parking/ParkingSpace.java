@@ -1,6 +1,6 @@
 package com.nhnacademy.pakingcontrolprogram.parking;
 
-import com.nhnacademy.pakingcontrolprogram.exception.car.Car;
+import com.nhnacademy.pakingcontrolprogram.car.Car;
 
 public class ParkingSpace {
     private String code;

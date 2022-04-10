@@ -1,6 +1,6 @@
 package com.nhnacademy.pakingcontrolprogram.parking;
 
-import com.nhnacademy.pakingcontrolprogram.exception.car.Car;
+import com.nhnacademy.pakingcontrolprogram.car.Car;
 import com.nhnacademy.pakingcontrolprogram.exception.DontHaveMoneyException;
 import com.nhnacademy.pakingcontrolprogram.money.Money;
 import com.nhnacademy.pakingcontrolprogram.user.User;
@@ -24,19 +24,23 @@ public class Exit {
         }
         long parkingTime = ChronoUnit.SECONDS.between(car.getInTime(), car.getOutTime());
         if (parkingTime <= HALF_AN_HOUR_CONVERT_TO_SECONDS) {
+            carOwner.getAmount().setAmount(carOwner.getAmount().getAmount() - defaultPrice);
             return defaultPrice;
         }
         if (parkingTime > MAXIMUM_DAILY_PARKING_TIME) {
             if(parkingTime < ONE_DAY_CONVERT_TO_SECONDS) {
                 defaultPrice = 10000;
+                carOwner.getAmount().setAmount(carOwner.getAmount().getAmount() - defaultPrice);
                 return defaultPrice;
             }
             defaultPrice = (int) (10000 * parkingTime / ONE_DAY_CONVERT_TO_SECONDS);
+            carOwner.getAmount().setAmount(carOwner.getAmount().getAmount() - defaultPrice);
             return defaultPrice;
         }
         for (int i = 0; i <= (parkingTime - HALF_AN_HOUR_CONVERT_TO_SECONDS - 1) / TEN_MINUTES_CONVERT_TO_SECONDS; i++) {
             defaultPrice += addPrice;
         }
+        carOwner.getAmount().setAmount(carOwner.getAmount().getAmount() - defaultPrice);
         return defaultPrice;
     }
 }

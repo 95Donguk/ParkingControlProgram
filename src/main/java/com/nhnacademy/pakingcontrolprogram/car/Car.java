@@ -1,4 +1,4 @@
-package com.nhnacademy.pakingcontrolprogram.exception.car;
+package com.nhnacademy.pakingcontrolprogram.car;
 
 import com.nhnacademy.pakingcontrolprogram.money.Money;
 import com.nhnacademy.pakingcontrolprogram.user.User;
